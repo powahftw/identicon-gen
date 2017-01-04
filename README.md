@@ -4,7 +4,9 @@
 
 # identicon-gen
 Create Identicon like images.
-The script is now randomly driven and doesn't work on hash like github, that feature will be implemented in the future.
+The script is now randomly driven for placing blocks and doesn't produce the same result each time.
+If the option to use a STRING as input is True then you always get the same RGB Color. 
+In the future i'm planning to extend the input to predetermine the pattern so that both the color and the figure will be the same for a given string each time.
 
 ```
 python identicon.py
@@ -22,6 +24,7 @@ BORDER is the distance it keep from the margin of the picture | Default is 20
 SIZE is the dimension of the image (SIZE*SIZE) | Default is 420 (No pun intended, it's the one github uses)
 PLACE_PROBABILITY is the probability a block get colored | Default is 0.5 (Half the times) 
 COLOR pick a random color from a set of RGB values
+STRING if the option is active then it will determine the color of the final sprite
 ```
 
 ### Other Examples
