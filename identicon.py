@@ -1,17 +1,22 @@
 from PIL import Image, ImageDraw
 from random import random, choice
+import hashlib
 
 # SETTINGS
 N_CHUNK = 5
-MIDDLE = N_CHUNK // 2+1
+MIDDLE = N_CHUNK // 2 + 1
 BORDER = 20
 SIZE = 420
 PLACE_PROBABILITY = 0.5
 COLOR = choice([(210, 107, 74), (127, 225, 138), (168, 126, 223), (204, 160, 79)])  # COLOR PALETTE
 
+if True:  # Check if you want the color to be determined by a string
+    STRING = b"HelloWorld"
+    HASHED = str(int(hashlib.md5(STRING).hexdigest(), 16))[:9]
+    COLOR = (int(HASHED[:3]), int(HASHED[3:6]), int(HASHED[6:9]))
+
 
 def main():
-
     img = Image.new("RGB", (SIZE, SIZE), (240, 240, 240))
 
     for i in range(MIDDLE):
@@ -27,7 +32,6 @@ def place_chunk(img, i, n):  # CALL CHUNK FUNCTION SYMMETRICALLY
     if random() > PLACE_PROBABILITY:
         chunk(img, i + 1, n + 1)
         if i != MIDDLE:
-            print(MIDDLE + (abs(MIDDLE - i) - 1))
             chunk(img, MIDDLE + (abs((MIDDLE - i)) - 1), n + 1)
         else:
             pass
@@ -55,6 +59,6 @@ def chunk(img, x, y):  # PLACE CHUNK OF COLOR IN THE IMAGE
 
 if __name__ == '__main__':
     if N_CHUNK % 2 != 0:
-            main()
+        main()
     else:
         raise Exception("N_CHUNK need to be odd")
